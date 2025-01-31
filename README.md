@@ -89,6 +89,84 @@ sub_tank მეთოდი, რომელიც მიღებულ რი�
 მეთოდი __eq__, რომელიც შეადერებს ორ მანქანას და დააბრუბნებს True-ს თუ
 ისინი ემთხვევიან, წინააღმდეგ შემთხვევაში დააბრუნებს False-ს.
 ```py
+class Vehicle(object):
+    def __init__(self):
+        self.color = ""
+        self.doorAmount = 0
+        self.type = ""
+    
+    def setColor(self, _color):
+        self.color = _color
+    
+    def setDoorAmount(self, _amount):
+        self.doorAmount = _amount
+    
+    def setType(self, _type):
+        self.type = _type
+    
+    def getColor(self):
+        return self.color.lower()
+    
+    def getAmount(self):
+        return self.doorAmount
+    
+    def getType(self):
+        return self.type.lower()
+    
+    def drive(self):
+      return "I'm driving a " + self.getColor() + " " + self.getType() + "!"
+
+class Car(Vehicle):
+    def __init__(self):
+        Vehicle.__init__(self)
+        self.price = 0
+        self.tank = 0
+    
+    def setPrice(self, _price):
+        self.price = _price
+    
+    def setTank(self, _tank):
+        self.tank = _tank
+    
+    def add_tank(self, _add):
+        self.tank += _add
+    
+    def sub_tank(self, _sub):
+        temp = self.tank - _sub
+        
+        if temp < 0:
+            self.tank = 0
+    
+    def getTank(self):
+        return self.tank
+    
+    def getPrice(self):
+        return self.price
+    
+    def drive(self):
+        return "I'm driving a " + self.getColor() + " " + self.getType() + " that costs " + str(self.getPrice()) + "$ and has " + str(self.getTank()) + " liters in tank."
+    
+    def __eq__(self, other):
+        if self.getType() == other.getType() and self.getColor() == other.getColor() and self.getAmount() == other.getAmount() and self.getTank() == other.getTank() and self.getPrice() == other.getPrice():
+            return True
+        return False
+
+obj1 = Car()
+obj2 = Car()
+
+obj1.setType("car")
+obj1.setColor("red")
+obj1.setDoorAmount(4)
+obj1.setTank(20)
+obj1.setPrice(50)
+print(obj1.drive())
+obj2.setType("car")
+obj2.setColor("red")
+obj2.setDoorAmount(4)
+obj2.setTank(20)
+obj2.setPrice(50)
+print(obj2.drive())
+print(obj1 == obj2)
 ```
 
 ## 6) ჩაიწერეთ datascience_salaries.csv ფაილი. წაიკითხეთ მონაცემები ფაილიდან, გამოითვალეთ და დაბეჭდეთ Senior, Mid, Entry დონეებისთვის რომელ ქვეყანაშია ყველაზე მაღალი საშუალო ხელფასი. პროგრამამ უნდა დაბეჭდოს შემდეგნაირად: გამოცდილების დონე - ლოკაცია - საშუალო ხელფასი.
