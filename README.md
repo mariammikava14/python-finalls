@@ -136,6 +136,8 @@ class Car(Vehicle):
         
         if temp < 0:
             self.tank = 0
+        else:
+            self.tank = temp
     
     def getTank(self):
         return self.tank
@@ -150,14 +152,14 @@ class Car(Vehicle):
         if self.getType() == other.getType() and self.getColor() == other.getColor() and self.getAmount() == other.getAmount() and self.getTank() == other.getTank() and self.getPrice() == other.getPrice():
             return True
         return False
-
 obj1 = Car()
 obj2 = Car()
-
 obj1.setType("car")
 obj1.setColor("red")
 obj1.setDoorAmount(4)
 obj1.setTank(20)
+obj1.add_tank(10)
+obj1.sub_tank(10)
 obj1.setPrice(50)
 print(obj1.drive())
 obj2.setType("car")
